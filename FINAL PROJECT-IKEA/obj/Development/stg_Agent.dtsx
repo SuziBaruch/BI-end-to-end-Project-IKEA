@@ -1,0 +1,1404 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/17/2022 11:29:37 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SUZI_BARUCH"
+  DTS:CreatorName="SUZI_BARUCH\suzib"
+  DTS:DTSID="{740D3455-EE84-4264-8F93-43B0AC0EC275}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.694.0"
+  DTS:LocaleID="3072"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{B2909243-4B11-4D2D-930C-97D90A80AB87}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.mrr_stg_PriorityERP 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7C9B2122-5DD0-4E57-8DD0-F49DBEF01EE6}"
+      DTS:ObjectName="SUZI_BARUCH\SQLSERVER2019.mrr_stg_PriorityERP 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SUZI_BARUCH\SQLSERVER2019;Initial Catalog=mrr_stg_PriorityERP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{7C9B2122-5DD0-4E57-8DD0-F49DBEF01EE6}SUZI_BARUCH\SQLSERVER2019.mrr_stg_PriorityERP;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.PriorityERP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{415EA036-6FE3-4D07-A5CD-529F5F36FF6E}"
+      DTS:ObjectName="SUZI_BARUCH\SQLSERVER2019.PriorityERP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SUZI_BARUCH\SQLSERVER2019;Initial Catalog=PriorityERP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{415EA036-6FE3-4D07-A5CD-529F5F36FF6E}SUZI_BARUCH\SQLSERVER2019.PriorityERP;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.PriorityERP 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DBDF1EA8-B218-4924-83CD-BE6240CAD119}"
+      DTS:ObjectName="SUZI_BARUCH\SQLSERVER2019.PriorityERP 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SUZI_BARUCH\SQLSERVER2019;Initial Catalog=PriorityERP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{DBDF1EA8-B218-4924-83CD-BE6240CAD119}SUZI_BARUCH\SQLSERVER2019.PriorityERP 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FD51F3B7-82BD-4F9B-B040-F70040998770}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7C9B2122-5DD0-4E57-8DD0-F49DBEF01EE6}"
+          SQLTask:SqlStatementSource="truncate table stg_AGENT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\stg_agent"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{d10bd3ca-b0a7-492a-a87d-347ec18880a5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="stg_agent"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\stg_agent\AGENT_TBL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="AGENT_TBL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[AGENTS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\stg_agent\AGENT_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.PriorityERP]"
+                  connectionManagerRefId="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.PriorityERP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENT]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[AGENT]"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENT]"
+                      name="AGENT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENTNAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[AGENTNAME]"
+                      length="32"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENTNAME]"
+                      name="AGENTNAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COMMISSION]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[COMMISSION]"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COMMISSION]"
+                      name="COMMISSION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRY]"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]"
+                      name="COUNTRY"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[AGENT]"
+                      dataType="i4"
+                      name="AGENT" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[AGENTCODE]"
+                      dataType="wstr"
+                      length="16"
+                      name="AGENTCODE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[AGENTNAME]"
+                      dataType="wstr"
+                      length="32"
+                      name="AGENTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[DISCOUNT]"
+                      dataType="r8"
+                      name="DISCOUNT" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[COMMISSION]"
+                      dataType="r8"
+                      name="COMMISSION" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[ADDRESS]"
+                      dataType="wstr"
+                      length="80"
+                      name="ADDRESS" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[PHONE]"
+                      dataType="wstr"
+                      length="20"
+                      name="PHONE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[FAX]"
+                      dataType="wstr"
+                      length="20"
+                      name="FAX" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      dataType="wstr"
+                      length="40"
+                      name="STATE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[ZIP]"
+                      dataType="wstr"
+                      length="10"
+                      name="ZIP" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRY]"
+                      dataType="i4"
+                      name="COUNTRY" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[CURRENCY]"
+                      dataType="i4"
+                      name="CURRENCY" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[EAGENTNAME]"
+                      dataType="wstr"
+                      length="32"
+                      name="EAGENTNAME" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[WARHS]"
+                      dataType="i8"
+                      name="WARHS" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[EMAIL]"
+                      dataType="wstr"
+                      length="48"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[CUSTFLAG]"
+                      dataType="wstr"
+                      length="1"
+                      name="CUSTFLAG" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[ADDRESSA]"
+                      dataType="wstr"
+                      length="80"
+                      name="ADDRESSA" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[STATEA]"
+                      dataType="wstr"
+                      length="40"
+                      name="STATEA" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[SECONDLANGTEXT]"
+                      dataType="wstr"
+                      length="1"
+                      name="SECONDLANGTEXT" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[MAGENT]"
+                      dataType="i8"
+                      name="MAGENT" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[INACTIVE]"
+                      dataType="wstr"
+                      length="1"
+                      name="INACTIVE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[EXTFILEFLAG]"
+                      dataType="wstr"
+                      length="1"
+                      name="EXTFILEFLAG" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[CELLPHONE]"
+                      dataType="wstr"
+                      length="20"
+                      name="CELLPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[USERFLAG]"
+                      dataType="wstr"
+                      length="1"
+                      name="USERFLAG" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[ADDRESS2]"
+                      dataType="wstr"
+                      length="80"
+                      name="ADDRESS2" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[ADDRESS3]"
+                      dataType="wstr"
+                      length="80"
+                      name="ADDRESS3" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].ExternalColumns[CUSTCAMPTYPE]"
+                      dataType="i4"
+                      name="CUSTCAMPTYPE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[AGENT]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[AGENT]"
+                      name="AGENT" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[AGENTNAME]"
+                      dataType="wstr"
+                      length="32"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[AGENTNAME]"
+                      name="AGENTNAME" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[COMMISSION]"
+                      dataType="r8"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[COMMISSION]"
+                      name="COMMISSION" />
+                    <outputColumn
+                      refId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[COUNTRY]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Error Output].Columns[COUNTRY]"
+                      name="COUNTRY" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\stg_agent\COUNTRIES_TBL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="COUNTRIES_TBL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[COUNTRIES]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\stg_agent\COUNTRIES_TBL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.PriorityERP 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.PriorityERP 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRY]"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]"
+                      name="COUNTRY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRYNAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRYNAME]"
+                      length="18"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRYNAME]"
+                      name="COUNTRYNAME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRY]"
+                      dataType="i4"
+                      name="COUNTRY" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRYNAME]"
+                      dataType="wstr"
+                      length="18"
+                      name="COUNTRYNAME" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[CUSTOMSTYPE]"
+                      dataType="wstr"
+                      length="1"
+                      name="CUSTOMSTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRYCODE]"
+                      dataType="wstr"
+                      length="2"
+                      name="COUNTRYCODE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[TAX]"
+                      dataType="i4"
+                      name="TAX" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[INTRASTATCODE]"
+                      dataType="wstr"
+                      length="2"
+                      name="INTRASTATCODE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[ECOUNTRYNAME]"
+                      dataType="wstr"
+                      length="18"
+                      name="ECOUNTRYNAME" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[USAPHONE]"
+                      dataType="wstr"
+                      length="1"
+                      name="USAPHONE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[VATNUM_FORMAT]"
+                      dataType="wstr"
+                      length="16"
+                      name="VATNUM_FORMAT" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[VATNUM_LENGTH]"
+                      dataType="wstr"
+                      length="8"
+                      name="VATNUM_LENGTH" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[ECSLCODE]"
+                      dataType="wstr"
+                      length="2"
+                      name="ECSLCODE" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[COUNTRYCODE3]"
+                      dataType="wstr"
+                      length="3"
+                      name="COUNTRYCODE3" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[PIKORDER]"
+                      dataType="i8"
+                      name="PIKORDER" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[BLACKLISTFLAG]"
+                      dataType="wstr"
+                      length="1"
+                      name="BLACKLISTFLAG" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[NATIONALITY]"
+                      dataType="wstr"
+                      length="40"
+                      name="NATIONALITY" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].ExternalColumns[EEAFLAG]"
+                      dataType="wstr"
+                      length="1"
+                      name="EEAFLAG" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[COUNTRY]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[COUNTRY]"
+                      name="COUNTRY" />
+                    <outputColumn
+                      refId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[COUNTRYNAME]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Error Output].Columns[COUNTRYNAME]"
+                      name="COUNTRYNAME" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\stg_agent\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\stg_agent\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\stg_agent\Merge Join.Inputs[Merge Join Left Input].Columns[COUNTRY]"
+                      cachedDataType="i4"
+                      cachedName="COUNTRY"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\stg_agent\Sort 1.Outputs[Sort Output].Columns[COUNTRY]" />
+                    <inputColumn
+                      refId="Package\stg_agent\Merge Join.Inputs[Merge Join Left Input].Columns[COUNTRYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="COUNTRYNAME"
+                      lineageId="Package\stg_agent\Sort 1.Outputs[Sort Output].Columns[COUNTRYNAME]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\stg_agent\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\stg_agent\Merge Join.Inputs[Merge Join Right Input].Columns[COUNTRY]"
+                      cachedDataType="i4"
+                      cachedName="COUNTRY"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[COUNTRY]" />
+                    <inputColumn
+                      refId="Package\stg_agent\Merge Join.Inputs[Merge Join Right Input].Columns[AGENT]"
+                      cachedDataType="i4"
+                      cachedName="AGENT"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[AGENT]" />
+                    <inputColumn
+                      refId="Package\stg_agent\Merge Join.Inputs[Merge Join Right Input].Columns[AGENTNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="32"
+                      cachedName="AGENTNAME"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[AGENTNAME]" />
+                    <inputColumn
+                      refId="Package\stg_agent\Merge Join.Inputs[Merge Join Right Input].Columns[COMMISSION]"
+                      cachedDataType="r8"
+                      cachedName="COMMISSION"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[COMMISSION]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\stg_agent\Merge Join.Outputs[Merge Join Output]"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[AgentID]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[AgentID]"
+                      name="AgentID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\stg_agent\Merge Join.Inputs[Merge Join Right Input].Columns[AGENT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Agent_Name]"
+                      dataType="wstr"
+                      length="32"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Agent_Name]"
+                      name="Agent_Name">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\stg_agent\Merge Join.Inputs[Merge Join Right Input].Columns[AGENTNAME]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Commission]"
+                      dataType="r8"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Commission]"
+                      name="Commission">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\stg_agent\Merge Join.Inputs[Merge Join Right Input].Columns[COMMISSION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Country_Name]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Country_Name]"
+                      name="Country_Name">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\stg_agent\Merge Join.Inputs[Merge Join Left Input].Columns[COUNTRYNAME]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\stg_agent\MRR_AGENT"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="MRR_AGENT"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg_AGENT]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\stg_agent\MRR_AGENT.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.mrr_stg_PriorityERP 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[SUZI_BARUCH\SQLSERVER2019.mrr_stg_PriorityERP 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].Columns[AgentID]"
+                      cachedDataType="i4"
+                      cachedName="AgentID"
+                      externalMetadataColumnId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[AgentID]"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[AgentID]" />
+                    <inputColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].Columns[Agent_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="32"
+                      cachedName="Agent_Name"
+                      externalMetadataColumnId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[Agent_Name]"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Agent_Name]" />
+                    <inputColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].Columns[Commission]"
+                      cachedDataType="r8"
+                      cachedName="Commission"
+                      externalMetadataColumnId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[Commission]"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Commission]" />
+                    <inputColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].Columns[Country_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="Country_Name"
+                      externalMetadataColumnId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[Country_Name]"
+                      lineageId="Package\stg_agent\Merge Join.Outputs[Merge Join Output].Columns[Country_Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[AgentID]"
+                      dataType="i4"
+                      name="AgentID" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[Agent_Name]"
+                      dataType="wstr"
+                      length="32"
+                      name="Agent_Name" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[Commission]"
+                      dataType="r8"
+                      name="Commission" />
+                    <externalMetadataColumn
+                      refId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input].ExternalColumns[Country_Name]"
+                      dataType="wstr"
+                      length="18"
+                      name="Country_Name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\stg_agent\MRR_AGENT.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\MRR_AGENT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\MRR_AGENT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\stg_agent\MRR_AGENT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\MRR_AGENT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\stg_agent\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\stg_agent\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\stg_agent\Sort.Inputs[Sort Input].Columns[AGENT]"
+                      cachedDataType="i4"
+                      cachedName="AGENT"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENT]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\stg_agent\Sort.Inputs[Sort Input].Columns[AGENTNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="32"
+                      cachedName="AGENTNAME"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENTNAME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\stg_agent\Sort.Inputs[Sort Input].Columns[COMMISSION]"
+                      cachedDataType="r8"
+                      cachedName="COMMISSION"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COMMISSION]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\stg_agent\Sort.Inputs[Sort Input].Columns[COUNTRY]"
+                      cachedDataType="i4"
+                      cachedName="COUNTRY"
+                      lineageId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\stg_agent\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[AGENT]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[AGENT]"
+                      name="AGENT">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENT]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[AGENTNAME]"
+                      dataType="wstr"
+                      length="32"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[AGENTNAME]"
+                      name="AGENTNAME">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[AGENTNAME]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[COMMISSION]"
+                      dataType="r8"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[COMMISSION]"
+                      name="COMMISSION">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COMMISSION]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[COUNTRY]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\Sort.Outputs[Sort Output].Columns[COUNTRY]"
+                      name="COUNTRY"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\stg_agent\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\stg_agent\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\stg_agent\Sort 1.Inputs[Sort Input].Columns[COUNTRY]"
+                      cachedDataType="i4"
+                      cachedName="COUNTRY"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\stg_agent\Sort 1.Inputs[Sort Input].Columns[COUNTRYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="18"
+                      cachedName="COUNTRYNAME"
+                      lineageId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRYNAME]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\stg_agent\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\stg_agent\Sort 1.Outputs[Sort Output].Columns[COUNTRY]"
+                      dataType="i4"
+                      lineageId="Package\stg_agent\Sort 1.Outputs[Sort Output].Columns[COUNTRY]"
+                      name="COUNTRY"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRY]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\stg_agent\Sort 1.Outputs[Sort Output].Columns[COUNTRYNAME]"
+                      dataType="wstr"
+                      length="18"
+                      lineageId="Package\stg_agent\Sort 1.Outputs[Sort Output].Columns[COUNTRYNAME]"
+                      name="COUNTRYNAME">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output].Columns[COUNTRYNAME]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\stg_agent.Paths[Merge Join Output]"
+              endId="Package\stg_agent\MRR_AGENT.Inputs[OLE DB Destination Input]"
+              name="Merge Join Output"
+              startId="Package\stg_agent\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\stg_agent.Paths[OLE DB Source Output]"
+              endId="Package\stg_agent\Sort 1.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\stg_agent\COUNTRIES_TBL.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\stg_agent.Paths[OLE DB Source Output1]"
+              endId="Package\stg_agent\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\stg_agent\AGENT_TBL.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\stg_agent.Paths[Sort Output]"
+              endId="Package\stg_agent\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\stg_agent\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\stg_agent.Paths[Sort Output1]"
+              endId="Package\stg_agent\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\stg_agent\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0152C2B8-B016-43E2-AF7A-4C83E8D7959F}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\stg_agent" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="126.666666666667,42.6666666666667"
+          Id="Package\stg_agent"
+          TopLeft="163.124998463318,103.549999221265" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Execute SQL Task"
+          TopLeft="191.249997150153,22.7499995931983" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="273.249997150153,65.416666259865">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-46.7916653535019,38.1333329614003"
+              Start="0,0"
+              End="-46.7916653535019,30.6333329614003">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0666664807002" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0666664807002"
+                    Point2="0,19.0666664807002"
+                    Point3="-4,19.0666664807002" />
+                  <mssgle:LineSegment
+                    End="-42.7916653535019,19.0666664807002" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-42.7916653535019,19.0666664807002"
+                    Point2="-46.7916653535019,19.0666664807002"
+                    Point3="-46.7916653535019,23.0666664807002" />
+                  <mssgle:LineSegment
+                    End="-46.7916653535019,30.6333329614003" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\stg_agent">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="160,42.6666666666667"
+          Id="Package\stg_agent\COUNTRIES_TBL"
+          TopLeft="44.9999993294478,7.81666653881469" />
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\stg_agent\Sort"
+          TopLeft="356.249994691461,100.74999819845" />
+        <NodeLayout
+          Size="131.333333333334,42.6666666666667"
+          Id="Package\stg_agent\Merge Join"
+          TopLeft="193.124997122213,164.449997059405" />
+        <NodeLayout
+          Size="140,42.6666666666667"
+          Id="Package\stg_agent\MRR_AGENT"
+          TopLeft="215.624996786937,242.333329381545" />
+        <NodeLayout
+          Size="136,42.6666666666667"
+          Id="Package\stg_agent\AGENT_TBL"
+          TopLeft="366.874994533137,17.5499996861816" />
+        <NodeLayout
+          Size="108,42.6666666666667"
+          Id="Package\stg_agent\Sort 1"
+          TopLeft="72.4999989196658,87.0999984425306" />
+        <EdgeLayout
+          Id="Package\stg_agent.Paths[Sort Output]"
+          TopLeft="356.249994691461,122.083331531783">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.7916642359147,63.6999988609553"
+              Start="0,0"
+              End="-24.2916642359147,63.6999988609553">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-11.8958321179574,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.8958321179574,0"
+                    Point2="-15.8958321179574,0"
+                    Point3="-15.8958321179574,4" />
+                  <mssgle:LineSegment
+                    End="-15.8958321179574,59.6999988609553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.8958321179574,59.6999988609553"
+                    Point2="-15.8958321179574,63.6999988609553"
+                    Point3="-19.8958321179574,63.6999988609553" />
+                  <mssgle:LineSegment
+                    End="-24.2916642359147,63.6999988609553" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\stg_agent.Paths[Sort Output1]"
+          TopLeft="126.499998919666,129.766665109197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132.291664869214,34.6833319502076"
+              Start="0,0"
+              End="132.291664869214,27.1833319502076">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.3416659751038" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.3416659751038"
+                    Point2="0,17.3416659751038"
+                    Point3="4,17.3416659751038" />
+                  <mssgle:LineSegment
+                    End="128.291664869214,17.3416659751038" />
+                  <mssgle:CubicBezierSegment
+                    Point1="128.291664869214,17.3416659751038"
+                    Point2="132.291664869214,17.3416659751038"
+                    Point3="132.291664869214,21.3416659751038" />
+                  <mssgle:LineSegment
+                    End="132.291664869214,27.1833319502076" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\stg_agent.Paths[OLE DB Source Output1]"
+          TopLeft="434.874994533137,60.2166663528482">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-29.2916665083421,40.5333318456014"
+              Start="0,0"
+              End="-29.2916665083421,33.0333318456014">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.2666659228007" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.2666659228007"
+                    Point2="0,20.2666659228007"
+                    Point3="-4,20.2666659228007" />
+                  <mssgle:LineSegment
+                    End="-25.2916665083421,20.2666659228007" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25.2916665083421,20.2666659228007"
+                    Point2="-29.2916665083421,20.2666659228007"
+                    Point3="-29.2916665083421,24.2666659228007" />
+                  <mssgle:LineSegment
+                    End="-29.2916665083421,33.0333318456014" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\stg_agent.Paths[OLE DB Source Output]"
+          TopLeft="125.749999124557,50.4833332054814">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.6166652370493"
+              Start="0,0"
+              End="0,29.1166652370493">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.1166652370493" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\stg_agent.Paths[Merge Join Output]"
+          TopLeft="258.79166378888,207.116663726072">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.8333329980574,35.2166656554733"
+              Start="0,0"
+              End="26.8333329980574,27.7166656554733">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.6083328277366" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.6083328277366"
+                    Point2="0,17.6083328277366"
+                    Point3="4,17.6083328277366" />
+                  <mssgle:LineSegment
+                    End="22.8333329980574,17.6083328277366" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.8333329980574,17.6083328277366"
+                    Point2="26.8333329980574,17.6083328277366"
+                    Point3="26.8333329980574,21.6083328277366" />
+                  <mssgle:LineSegment
+                    End="26.8333329980574,27.7166656554733" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\stg_agent\MRR_AGENT">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
